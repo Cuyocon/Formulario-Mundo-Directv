@@ -238,7 +238,7 @@
       </div>
 
       <label class="aceptacion">
-        <input type="checkbox" required>
+        <input type="checkbox" name="consentimiento" value="si" required>
 
         <span>
           Autorizo que un asesor se comunique
@@ -266,23 +266,77 @@
 
   </main>
 
-  <script>
-    document.getElementById("formulario")
-      .addEventListener("submit", function(event) {
+ 
+<script>
+  // PEGÁ ACÁ LA URL DE TU APLICACIÓN WEB DE GOOGLE
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwCm7Uru9e3bycxLESjnXPbDpOpBVqjcG2-QjK-7VoX4rQ4P7ABXegDZ6HBzUMdwER6/exec";
 
-        event.preventDefault();
+  const formulario = document.getElementById("formulario");
+  const aviso = document.getElementById("aviso");
+  const boton = formulario.querySelector('button[type="submit"]');
 
-        const aviso = document.getElementById("aviso");
+  formulario.addEventListener("submit", async function(event) {
+    event.preventDefault();
 
-        aviso.style.display = "block";
+    if (!formulario.reportValidity()) {
+      return;
+    }
 
-        aviso.textContent =
-          "Formulario de demostración. Todavía no " +
-          "está conectado a Google Sheets y " +
-          "los datos no se han enviado.";
+    // Comprobar que la URL esté configurada.
+    if (!SCRIPT_URL.startsWith("https://script.google.com/macros/s/")) {
+      aviso.style.display = "block";
+      aviso.textContent = "Falta configurar la conexión del formulario.";
+      return;
+    }
 
+    boton.disabled = true;
+    boton.textContent = "ENVIANDO...";
+    aviso.style.display = "block";
+    aviso.textContent = "Estamos registrando tu solicitud...";
+
+    try {
+      const datos = new URLSearchParams();
+
+      datos.append("nombre", formulario.elements["nombre"].value.trim());
+      datos.append("telefono", formulario.elements["telefono"].value.trim());
+      datos.append("localidad", formulario.elements["localidad"].value.trim());
+      datos.append("tarjeta", formulario.elements["tarjeta"].value);
+      datos.append(
+        "consentimiento",
+        formulario.elements["consentimiento"].checked ? "si" : "no"
+      );
+
+      // Google Apps Script no siempre permite leer la
+      // respuesta desde una página alojada en GitHub.
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: datos
       });
-  </script>
+
+      // El envío se intentó, pero no podemos confirmar
+      // desde el navegador si Google Sheets lo guardó.
+      aviso.textContent =
+        "Tu solicitud fue enviada para su procesamiento. " +
+        "Si necesitás confirmar la recepción, " +
+        "comunicate con nuestro equipo.";
+
+      // No borramos los datos hasta verificar la conexión.
+
+    } catch (error) {
+      aviso.textContent =
+        "No pudimos completar el envío. " +
+        "Por favor, intentá nuevamente.";
+
+      console.error("Error de envío:", error);
+
+    } finally {
+      boton.disabled = false;
+      boton.textContent = "QUIERO QUE ME LLAMEN";
+    }
+  });
+</script>
+
 
 </body>
 </html>
