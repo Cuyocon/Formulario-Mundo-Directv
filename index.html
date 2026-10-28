@@ -297,6 +297,8 @@
 
     try {
       const datos = new URLSearchParams();
+      const idSolicitud = crypto.randomUUID();
+datos.append("idSolicitud", idSolicitud);
 
       datos.append("nombre", formulario.elements["nombre"].value.trim());
       datos.append("telefono", formulario.elements["telefono"].value.trim());
