@@ -25,6 +25,20 @@
     button:hover { background: #069de7; }
     button:disabled { opacity: .7; cursor: wait; }
     .aviso { display: none; padding: 14px; background: #29394a; border-radius: 8px; margin-bottom: 18px; font-size: 13px; line-height: 1.5; }
+    /* Pantalla final, visible solo cuando Sheets confirma el registro. */
+    form.confirmado > :not(#aviso) { display: none !important; }
+    form.confirmado { padding: 28px 26px 32px; }
+    form.confirmado .aviso {
+      display: flex !important; flex-direction: column; align-items: center;
+      gap: 12px; padding: 28px 20px; margin: 0;
+      background: #103957; border-radius: 12px; text-align: center;
+    }
+    .exito-icono { color: #61d6a4; font-size: 46px; line-height: 1; }
+    .exito-titulo { color: #ffffff; font-size: 23px; font-weight: bold; }
+    .exito-texto { color: #d9e7f2; font-size: 15px; line-height: 1.55; }
+    body.registro-confirmado header h1,
+    body.registro-confirmado header p { display: none; }
+    body.registro-confirmado header { padding: 25px 24px; }
     .nota { text-align: center; color: #b9c5d3; font-size: 12px; margin-top: 18px; }
   </style>
 </head>
@@ -168,8 +182,13 @@
         }
 
         if (confirmado) {
-          mostrarAviso("¡Recibimos tu consulta! Un asesor se comunicará con vos en breve.");
           formulario.reset();
+          aviso.innerHTML = '<span class="exito-icono" aria-hidden="true">✓</span>' +
+            '<span class="exito-titulo">¡Gracias por tu consulta!</span>' +
+            '<span class="exito-texto">¡Recibimos tus datos!<br>Un asesor se comunicará con vos en breve para contarte las promociones disponibles.</span>';
+          formulario.classList.add("confirmado");
+          document.body.classList.add("registro-confirmado");
+          window.scrollTo({ top: 0, behavior: "smooth" });
           // Más adelante, el evento Lead de Meta se agregará aquí.
         } else {
           mostrarAviso("No pudimos confirmar la recepción de tu consulta. Puede que se haya registrado. Por favor, no la envíes nuevamente por ahora.");
