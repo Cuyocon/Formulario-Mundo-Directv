@@ -198,8 +198,16 @@
           }
         }
 
-        if (confirmado) {
-          formulario.reset();
+       
+if (confirmado) {
+
+  // Registrar la conversión en Meta Ads.
+  if (typeof fbq === "function") {
+    fbq("track", "Lead");
+  }
+
+  formulario.reset();
+
           aviso.innerHTML = '<span class="exito-icono" aria-hidden="true">✓</span>' +
             '<span class="exito-titulo">¡Gracias por tu consulta!</span>' +
             '<span class="exito-texto">¡Recibimos tus datos!<br>Un asesor se comunicará con vos en breve para contarte las promociones disponibles.</span>';
