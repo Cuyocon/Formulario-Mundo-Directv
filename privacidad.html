@@ -3,151 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Política de Privacidad | Cuyocon</title>
+  <title>Promociones de TV HD | Mundo DIRECTV</title>
   <style>
-    body {
-      margin: 0;
-      padding: 30px 18px;
-      background: #090c13;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      line-height: 1.7;
-    }
-    main {
-      max-width: 720px;
-      margin: auto;
-    }
-    h1, h2 { color: #23b8f5; }
-    h1 { font-size: 27px; }
-    h2 { font-size: 19px; margin-top: 28px; }
-    p { font-size: 15px; color: #d6dce5; }
-    a { color: #23b8f5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px 14px; background: #090c13; color: white; font-family: Arial, sans-serif; }
+    .contenedor { max-width: 460px; margin: auto; background: #171c26; border-radius: 16px; overflow: hidden; }
+    header { padding: 30px 24px; text-align: center; background: linear-gradient(140deg, #09223d, #13496c); }
+    .marca { color: #23b8f5; font-size: 28px; font-weight: bold; }
+    h1 { font-size: 23px; line-height: 1.25; }
+    p { font-size: 14px; line-height: 1.5; }
+    form { padding: 26px; }
+    label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 8px; }
+    .campo { margin-bottom: 20px; }
+    input[type="text"], input[type="tel"], select { width: 100%; padding: 14px; border: 1px solid #445064; border-radius: 8px; background: #252b36; color: white; font-size: 16px; font-family: Arial, sans-serif; }
+    input::placeholder { color: #aeb8c6; }
+    select { cursor: pointer; }
+    select option { background: #252b36; color: white; }
+    .aceptacion { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; font-weight: normal; line-height: 1.5; }
+    .aceptacion input { margin-top: 3px; }
+    button { width: 100%; margin-top: 20px; padding: 16px; border: none; border-radius: 8px; background: #087fce; color: white; font-size: 16px; font-weight: bold; cursor: pointer; }
+    button:hover { background: #069de7; }
+    button:disabled { opacity: .7; cursor: wait; }
+    .aviso { display: none; padding: 14px; background: #29394a; border-radius: 8px; margin-bottom: 18px; font-size: 13px; line-height: 1.5; }
+    form.confirmado > :not(#aviso) { display: none !important; }
+    form.confirmado { padding: 28px 26px 32px; }
+    form.confirmado .aviso { display: flex !important; flex-direction: column; align-items: center; gap: 12px; padding: 28px 20px; margin: 0; background: #103957; border-radius: 12px; text-align: center; }
+    .exito-icono { color: #61d6a4; font-size: 46px; line-height: 1; }
+    .exito-titulo { color: #ffffff; font-size: 23px; font-weight: bold; }
+    .exito-texto { color: #d9e7f2; font-size: 15px; line-height: 1.55; }
+    body.registro-confirmado header h1, body.registro-confirmado header p { display: none; }
+    body.registro-confirmado header { padding: 25px 24px; }
+    .nota { text-align: center; color: #b9c5d3; font-size: 12px; margin-top: 18px; }
+    .cookies { position: fixed; z-index: 1000; bottom: 14px; left: 14px; right: 14px; max-width: 460px; margin: 0 auto; background: #202b3a; border: 1px solid #465c70; border-radius: 13px; padding: 18px; box-shadow: 0 8px 35px rgba(0,0,0,.55); }
+    .cookies[hidden] { display: none; }
+    .cookies h2 { font-size: 17px; margin: 0 0 9px; color: #fff; }
+    .cookies p { margin: 0 0 12px; color: #e0e8f0; font-size: 13px; line-height: 1.5; }
+    .cookies a, .preferencias a { color: #23b8f5; }
+    .cookies-acciones { display: flex; gap: 10px; }
+    .cookies-acciones button { flex: 1; margin: 0; font-size: 14px; padding: 12px; }
+    .cookies-acciones .rechazar { background: #3a485a; }
+    .cookies-acciones .rechazar:hover { background: #526176; }
+    .preferencias { text-align: center; margin: 16px auto 0; font-size: 12px; }
+    .preferencias button { background: transparent; border: none; color: #23b8f5; text-decoration: underline; font-size: 12px; padding: 5px; width: auto; margin: 0; font-weight: normal; }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Política de Privacidad</h1>
-
-    <p><strong>Mundo DIRECTV — Gestión comercial de Cuyocon</strong></p>
-
-    <h2>1. Responsable del tratamiento</h2>
-    <p>
-      Este formulario es administrado por Cuyo Connection SAS (Cuyocon),
-      con domicilio en España 509, PB 4, Mendoza, Argentina.
-      Cuyocon actúa como intermediario comercial para atender consultas
-      relacionadas con servicios de televisión y entretenimiento de DIRECTV.
-      Enviar una consulta no implica contratar automáticamente un servicio.
-    </p>
-
-    <h2>2. Datos recopilados</h2>
-    <p>
-      Solicitamos nombre y apellido, teléfono, localidad y provincia,
-      tipo de tarjeta de crédito declarada y aceptación del contacto comercial.
-      No solicitamos números completos de tarjetas, fechas de vencimiento,
-      códigos de seguridad ni contraseñas.
-    </p>
-    <p>
-      También registramos la fecha de envío, un identificador de solicitud
-      y, cuando están disponibles, parámetros UTM que indican el origen
-      publicitario de la visita (fuente, medio, campaña, anuncio y conjunto de anuncios).
-    </p>
-
-    <h2>3. Finalidades</h2>
-    <p>
-      Utilizamos estos datos para recibir y gestionar consultas, contactar
-      a las personas interesadas, informar promociones y planes disponibles,
-      verificar solicitudes y realizar seguimiento comercial.
-      Los datos de origen de las visitas también nos permiten evaluar
-      el rendimiento de nuestras campañas publicitarias.
-    </p>
-
-    <h2>4. Proveedores tecnológicos y almacenamiento</h2>
-    <p>
-      El formulario está publicado mediante GitHub Pages y utiliza
-      Google Apps Script y Google Sheets para procesar y registrar solicitudes.
-      Estos proveedores pueden tratar datos técnicos o personales necesarios
-      para prestar sus servicios, incluso mediante infraestructura ubicada
-      fuera de Argentina, con sujeción a las normas aplicables.
-    </p>
-
-    <h2>5. Meta Pixel y medición publicitaria</h2>
-    <p>
-      Este sitio utiliza Meta Pixel, una herramienta de Meta Platforms,
-      para medir visitas al formulario (evento PageView) y solicitudes
-      confirmadas (evento Lead), y evaluar el rendimiento de anuncios
-      publicados en Facebook e Instagram.
-    </p>
-    <p>
-      Según la configuración y el funcionamiento de esta herramienta,
-      Meta puede recibir datos técnicos como dirección IP, información
-      del navegador y dispositivo, identificadores y datos de interacción
-      con el sitio. Meta Pixel puede utilizar cookies u otras tecnologías
-      similares. No enviamos deliberadamente a Meta los datos ingresados
-      en los campos de contacto del formulario mediante estos eventos.
-    </p>
-    <p>
-      Más información en la
-      <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer">Política de Privacidad de Meta</a>.
-      El uso de tecnologías de seguimiento publicitario se gestionará
-      conforme a los requisitos de información y consentimiento aplicables.
-    </p>
-
-    <h2>6. Acceso y comunicación de datos</h2>
-    <p>
-      Los datos podrán ser tratados por personal comercial autorizado
-      y proveedores tecnológicos necesarios para gestionar las consultas.
-      Cuando resulte necesario para avanzar con una contratación,
-      podrán compartirse con el proveedor o canal comercial correspondiente,
-      de acuerdo con la finalidad informada y la normativa aplicable.
-      Cuyocon no comercializa bases de datos personales.
-    </p>
-
-    <h2>7. Conservación y seguridad</h2>
-    <p>
-      Conservamos los datos durante el tiempo necesario para gestionar
-      las consultas y cumplir las obligaciones legales aplicables.
-      Aplicamos medidas razonables de seguridad para prevenir accesos
-      no autorizados, pérdidas y divulgaciones indebidas.
-      Cuando corresponda, los datos serán eliminados o anonimizados.
-    </p>
-
-    <h2>8. Derechos de las personas</h2>
-    <p>
-      Conforme a la Ley 25.326 de Protección de Datos Personales de Argentina,
-      las personas pueden solicitar acceso, rectificación, actualización
-      o supresión de sus datos, así como retirar el consentimiento
-      cuando corresponda. Para ejercer estos derechos, pueden escribir
-      a <a href="mailto:cuyocon@gmail.com">cuyocon@gmail.com</a>.
-      La Agencia de Acceso a la Información Pública (AAIP) es la autoridad
-      de control competente en Argentina.
-    </p>
-
-    <h2>9. Consentimiento y contacto comercial</h2>
-    <p>
-      Al enviar el formulario, la persona solicita información sobre
-      los servicios consultados y acepta ser contactada con ese fin.
-      La aceptación del contacto comercial no implica, por sí sola,
-      aceptar tecnologías de seguimiento publicitario cuando se requiera
-      una elección separada.
-    </p>
-
-    <h2>10. Contacto</h2>
-    <p>
-      Responsable: Cuyo Connection SAS (Cuyocon)<br>
-      Domicilio: España 509, PB 4, Mendoza, Argentina<br>
-      Correo electrónico:
-      <a href="mailto:cuyocon@gmail.com">cuyocon@gmail.com</a>
-    </p>
-
-    <h2>11. Actualizaciones</h2>
-    <p>
-      Podemos modificar esta política para reflejar cambios normativos,
-      técnicos u operativos. La versión vigente estará publicada en esta página.
-    </p>
-
-    <p>Última actualización: 2 de noviembre de 2026.</p>
-
-    <p><a href="./">Volver al formulario</a></p>
+  <main class="contenedor">
+    <header>
+      <div class="marca">MUNDO DIRECTV</div>
+      <h1>¡Conocé las promociones de TV Digital para tu hogar!</h1>
+      <p>Dejanos tus datos y un asesor se va a contactar para informarte sobre los planes disponibles.</p>
+    </header>
+    <form id="formulario">
+      <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
+      <div class="campo"><label for="nombre">Nombre y apellido</label><input type="text" id="nombre" name="nombre" placeholder="Tu nombre y apellido" autocomplete="name" required></div>
+      <div class="campo"><label for="telefono">Número de teléfono</label><input type="tel" id="telefono" name="telefono" placeholder="Ej.: 351 300 1234" autocomplete="tel" required></div>
+      <div class="campo"><label for="localidad">Localidad y provincia</label><input type="text" id="localidad" name="localidad" placeholder="Ej.: Córdoba, Córdoba" required></div>
+      <div class="campo"><label for="tarjeta">¿Qué tarjeta de crédito tenés?</label><select id="tarjeta" name="tarjeta" required><option value="" disabled selected>Seleccioná tu tarjeta</option><option value="Visa">Visa</option><option value="Mastercard">Mastercard</option><option value="Naranja">Naranja</option><option value="American Express">American Express</option><option value="Nativa">Nativa</option></select></div>
+      <label class="aceptacion"><input type="checkbox" name="consentimiento" value="si" required><span>Acepto que un asesor me llame para contarme las promociones disponibles.</span></label>
+      <p style="font-size:12px; line-height:1.5; margin-top:10px;">Tus datos serán utilizados por Cuyocon para gestionar tu consulta. Consultá nuestra <a href="privacidad.html" target="_blank" rel="noopener noreferrer" style="color:#23b8f5;">Política de Privacidad</a>.</p>
+      <button type="submit">ENVIAR CONSULTA</button>
+    </form>
   </main>
+  <div class="preferencias"><button type="button" id="abrir-preferencias">Preferencias de cookies</button></div>
+  <section class="cookies" id="aviso-cookies" role="dialog" aria-modal="false" aria-labelledby="cookies-titulo" aria-describedby="cookies-texto" hidden>
+    <h2 id="cookies-titulo">Tu privacidad importa</h2>
+    <p id="cookies-texto">Usamos cookies para medir las visitas y mejorar nuestros anuncios. Podés aceptar o rechazar su uso sin afectar tu consulta.</p>
+    <p>Más información en nuestra <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>.</p>
+    <div class="cookies-acciones">
+      <button type="button" class="rechazar" id="rechazar-cookies">Rechazar</button>
+      <button type="button" id="aceptar-cookies">Aceptar</button>
+    </div>
+  </section>
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwCm7Uru9e3bycxLESjnXPbDpOpBVqjcG2-QjK-7VoX4rQ4P7ABXegDZ6HBzUMdwER6/exec";
+    const parametrosURL = new URLSearchParams(window.location.search);
+    const obtenerUTM = nombre => parametrosURL.get(nombre) || "";
+    const formulario = document.getElementById("formulario");
+    const aviso = document.getElementById("aviso");
+    const boton = formulario.querySelector('button[type="submit"]');
+
+    // El píxel no se descarga ni inicializa hasta recibir autorización.
+    const CLAVE_CONSENTIMIENTO = "mundoDTV_consentimientoMeta_v1";
+    const panelCookies = document.getElementById("aviso-cookies");
+    let consentimientoMeta = null;
+    let pixelInicializado = false;
+    try { consentimientoMeta = localStorage.getItem(CLAVE_CONSENTIMIENTO); } catch (e) { /* Almacenamiento no disponible */ }
+
+    function iniciarMetaPixel() {
+      if (pixelInicializado || consentimientoMeta !== "aceptado") return;
+      pixelInicializado = true;
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1710368940410698');
+      fbq('track', 'PageView');
+    }
+
+    function elegirCookies(eleccion) {
+      consentimientoMeta = eleccion;
+      try { localStorage.setItem(CLAVE_CONSENTIMIENTO, eleccion); } catch (e) { /* Se aplicará durante esta visita */ }
+      panelCookies.hidden = true;
+      if (eleccion === "aceptado") {
+        iniciarMetaPixel();
+      } else if (pixelInicializado) {
+        // Si estaba activo, recargar evita nuevos eventos desde esta página.
+        window.location.reload();
+      }
+    }
+    document.getElementById("aceptar-cookies").addEventListener("click", () => elegirCookies("aceptado"));
+    document.getElementById("rechazar-cookies").addEventListener("click", () => elegirCookies("rechazado"));
+    document.getElementById("abrir-preferencias").addEventListener("click", () => { panelCookies.hidden = false; });
+    if (consentimientoMeta === "aceptado") iniciarMetaPixel();
+    else if (consentimientoMeta !== "rechazado") panelCookies.hidden = false;
+
+    function mostrarAviso(mensaje) { aviso.style.display = "block"; aviso.textContent = mensaje; }
+    function esperar(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+    // Apps Script responde con JSONP solo para consultar el estado del ID.
+    function verificarSolicitud(idSolicitud) {
+      return new Promise((resolve, reject) => {
+        const callback = "verificarDTV_" + crypto.randomUUID().replace(/-/g, "");
+        const etiqueta = document.createElement("script");
+        const url = new URL(SCRIPT_URL);
+        let finalizado = false;
+        let temporizador;
+        function terminar(error, estado) {
+          if (finalizado) return;
+          finalizado = true;
+          clearTimeout(temporizador);
+          etiqueta.remove();
+          delete window[callback];
+          if (error) reject(error);
+          else resolve(estado);
+        }
+        window[callback] = respuesta => terminar(null, respuesta && respuesta.estado);
+        url.searchParams.set("idSolicitud", idSolicitud);
+        url.searchParams.set("callback", callback);
+        etiqueta.src = url.toString();
+        etiqueta.onerror = () => terminar(new Error("No se pudo consultar el registro"));
+        temporizador = setTimeout(() => terminar(new Error("Tiempo de espera agotado")), 10000);
+        document.head.appendChild(etiqueta);
+      });
+    }
+
+    formulario.addEventListener("submit", async function(event) {
+      event.preventDefault();
+      if (boton.disabled || formulario.classList.contains("confirmado") || !formulario.reportValidity()) return;
+      if (!SCRIPT_URL.startsWith("https://script.google.com/macros/s/")) {
+        mostrarAviso("Falta configurar la conexión del formulario.");
+        return;
+      }
+      boton.disabled = true;
+      boton.textContent = "ENVIANDO...";
+      mostrarAviso("Estamos registrando tu solicitud...");
+      let confirmado = false;
+      let envioIntentado = false;
+      try {
+        const datos = new URLSearchParams();
+        const idSolicitud = crypto.randomUUID();
+        datos.append("idSolicitud", idSolicitud);
+        datos.append("nombre", formulario.elements["nombre"].value.trim());
+        datos.append("telefono", formulario.elements["telefono"].value.trim());
+        datos.append("localidad", formulario.elements["localidad"].value.trim());
+        datos.append("tarjeta", formulario.elements["tarjeta"].value);
+        datos.append("consentimiento", formulario.elements["consentimiento"].checked ? "si" : "no");
+        datos.append("utm_source", obtenerUTM("utm_source"));
+        datos.append("utm_medium", obtenerUTM("utm_medium"));
+        datos.append("utm_campaign", obtenerUTM("utm_campaign"));
+        datos.append("utm_content", obtenerUTM("utm_content"));
+        datos.append("utm_term", obtenerUTM("utm_term"));
+        envioIntentado = true;
+        await fetch(SCRIPT_URL, { method: "POST", mode: "no-cors", body: datos });
+        for (let intento = 0; intento < 5; intento++) {
+          await esperar(1500);
+          try {
+            const estado = await verificarSolicitud(idSolicitud);
+            if (estado === "CONFIRMADO") { confirmado = true; break; }
+            if (estado === "ERROR" || estado === "INVALIDO") break;
+          } catch (errorVerificacion) {
+            console.warn("No se pudo verificar el registro:", errorVerificacion);
+          }
+        }
+        if (confirmado) {
+          if (consentimientoMeta === "aceptado" && pixelInicializado && typeof fbq === "function") {
+            fbq("track", "Lead");
+          }
+          formulario.reset();
+          aviso.innerHTML = '<span class="exito-icono" aria-hidden="true">✓</span>' +
+            '<span class="exito-titulo">¡Gracias por tu consulta!</span>' +
+            '<span class="exito-texto">¡Recibimos tus datos!<br>Un asesor se comunicará con vos en breve para contarte las promociones disponibles.</span>';
+          formulario.classList.add("confirmado");
+          document.body.classList.add("registro-confirmado");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          mostrarAviso("No pudimos confirmar la recepción de tu consulta. Puede que se haya registrado. Por favor, no la envíes nuevamente por ahora.");
+        }
+      } catch (error) {
+        console.error("Error durante el envío:", error);
+        mostrarAviso(envioIntentado
+          ? "No pudimos confirmar el envío. Puede que se haya registrado; por favor, no lo repitas por ahora."
+          : "No pudimos iniciar el envío. Por favor, intentá nuevamente.");
+      } finally {
+        boton.disabled = false;
+        boton.textContent = "ENVIAR CONSULTA";
+      }
+    });
+  </script>
 </body>
 </html>
