@@ -106,6 +106,13 @@
 
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwCm7Uru9e3bycxLESjnXPbDpOpBVqjcG2-QjK-7VoX4rQ4P7ABXegDZ6HBzUMdwER6/exec";
+    
+const parametrosURL = new URLSearchParams(window.location.search);
+
+const obtenerUTM = (nombre) => {
+  return parametrosURL.get(nombre) || "";
+};
+
     const formulario = document.getElementById("formulario");
     const aviso = document.getElementById("aviso");
     const boton = formulario.querySelector('button[type="submit"]');
@@ -177,6 +184,13 @@
         datos.append("localidad", formulario.elements["localidad"].value.trim());
         datos.append("tarjeta", formulario.elements["tarjeta"].value);
         datos.append("consentimiento", formulario.elements["consentimiento"].checked ? "si" : "no");
+        
+datos.append("utm_source", obtenerUTM("utm_source"));
+datos.append("utm_medium", obtenerUTM("utm_medium"));
+datos.append("utm_campaign", obtenerUTM("utm_campaign"));
+datos.append("utm_content", obtenerUTM("utm_content"));
+datos.append("utm_term", obtenerUTM("utm_term"));
+
 
         // La respuesta POST no es legible con no-cors. La verificación posterior
         // busca el ID en Sheets, sin asumir que fetch confirma el guardado.
