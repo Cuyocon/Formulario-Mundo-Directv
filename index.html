@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,6 +20,24 @@
       console.warn("No se pudo leer la preferencia.");
     }
 
+
+    // Diagnóstico local: no envía datos personales ni registros a terceros.
+    window.DTVDiagnostico = {
+      consentimiento: consentimientoCookies,
+      pixelIniciado: false,
+      scriptPixel: "no solicitado",
+      pageViewIntentado: false,
+      sheetsConfirmado: false,
+      leadIntentado: false,
+      ultimoEstado: "Formulario cargado"
+    };
+
+    function diagnosticoDTV(estado) {
+      window.DTVDiagnostico.consentimiento = consentimientoCookies;
+      window.DTVDiagnostico.ultimoEstado = estado;
+      console.info("[DTV diagnóstico]", estado, {...window.DTVDiagnostico});
+    }
+
     function iniciarMetaPixel() {
       if (
         pixelIniciado ||
@@ -28,6 +45,9 @@
       ) return;
 
       pixelIniciado = true;
+      window.DTVDiagnostico.pixelIniciado = true;
+      window.DTVDiagnostico.scriptPixel = "solicitado";
+      diagnosticoDTV("Se solicitó la carga del píxel");
 
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;
@@ -49,12 +69,29 @@
       }(window,document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
 
+      // Estado de carga del archivo externo (no confirma recepción de eventos).
+      const scriptMeta = document.querySelector('script[src*="connect.facebook.net/en_US/fbevents.js"]');
+      if (scriptMeta) {
+        scriptMeta.addEventListener("load", () => {
+          window.DTVDiagnostico.scriptPixel = "cargado";
+          diagnosticoDTV("Script de Meta cargado");
+        });
+        scriptMeta.addEventListener("error", () => {
+          window.DTVDiagnostico.scriptPixel = "error o bloqueo";
+          diagnosticoDTV("No se pudo cargar el script de Meta");
+        });
+      }
+
       fbq("init", PIXEL_ID);
       fbq("track", "PageView");
+      window.DTVDiagnostico.pageViewIntentado = true;
+      diagnosticoDTV("PageView invocado");
     }
 
     if (consentimientoCookies === "aceptado") {
       iniciarMetaPixel();
+    } else {
+      diagnosticoDTV("Meta Pixel en espera de consentimiento");
     }
   </script>
 
@@ -738,6 +775,8 @@
           }
 
           if (confirmado) {
+            window.DTVDiagnostico.sheetsConfirmado = true;
+            diagnosticoDTV("Google Sheets confirmó la solicitud");
 
             // Conversión Meta solo con consentimiento
 
@@ -746,6 +785,14 @@
               typeof fbq === "function"
             ) {
               fbq("track", "Lead");
+              window.DTVDiagnostico.leadIntentado = true;
+              diagnosticoDTV("Lead invocado; verificar envío en Network y recepción en Meta");
+            }
+
+            if (consentimientoCookies !== "aceptado") {
+              diagnosticoDTV("Lead omitido: cookies no aceptadas");
+            } else if (typeof fbq !== "function") {
+              diagnosticoDTV("Lead omitido: función fbq no disponible");
             }
 
             formulario.reset();
@@ -841,6 +888,7 @@
           );
         }
 
+        diagnosticoDTV("Cookies aceptadas");
         iniciarMetaPixel();
         ocultarPreferencias();
       }
@@ -865,6 +913,7 @@
           );
         }
 
+        diagnosticoDTV("Cookies rechazadas");
         ocultarPreferencias();
 
         // Si el pixel estaba activo, recargar
