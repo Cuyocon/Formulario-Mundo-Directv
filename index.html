@@ -95,6 +95,33 @@
     }
   </script>
 
+  <!-- GA4: se carga solo después de aceptar cookies de medición. -->
+  <script>
+    const GA4_ID = "G-N86PKMM8TX";
+    let ga4Iniciado = false;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+
+    function iniciarGA4() {
+      if (ga4Iniciado || consentimientoCookies !== "aceptado") return;
+      ga4Iniciado = true;
+      const etiquetaGA4 = document.createElement("script");
+      etiquetaGA4.async = true;
+      etiquetaGA4.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
+      document.head.appendChild(etiquetaGA4);
+      gtag("js", new Date());
+      gtag("config", GA4_ID);
+    }
+
+    function eventoGA4(nombre, parametros = {}) {
+      if (consentimientoCookies !== "aceptado" || !ga4Iniciado) return;
+      // No incluir valores de campos ni datos identificables.
+      gtag("event", nombre, parametros);
+    }
+
+    iniciarGA4();
+  </script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -636,6 +663,43 @@
       });
     }
 
+    // Medición de embudo GA4: solo eventos anónimos y con consentimiento.
+    // Los nombres llevan prefijo dtv_ para evitar confusión con eventos automáticos de GA4.
+    const pasosMedidos = new Set();
+    let formularioIniciado = false;
+    const nombresPasos = {
+      nombre: "nombre",
+      telefono: "telefono",
+      localidad: "localidad",
+      tarjeta: "tarjeta",
+      consentimiento: "consentimiento_contacto"
+    };
+
+    eventoGA4("dtv_form_view");
+
+    formulario.addEventListener("focusin", (evento) => {
+      const paso = nombresPasos[evento.target.name];
+      if (!paso || consentimientoCookies !== "aceptado") return;
+      if (!formularioIniciado) {
+        formularioIniciado = true;
+        eventoGA4("dtv_form_start");
+      }
+      if (!pasosMedidos.has(paso)) {
+        pasosMedidos.add(paso);
+        eventoGA4("dtv_form_step", { form_step: paso });
+      }
+    });
+
+    // Se dispara incluso cuando la validación nativa impide el evento submit.
+    formulario.addEventListener("invalid", (evento) => {
+      const paso = nombresPasos[evento.target.name];
+      if (paso) eventoGA4("dtv_form_validation_error", { form_step: paso });
+    }, true);
+
+    boton.addEventListener("click", () => {
+      if (!boton.disabled) eventoGA4("dtv_form_submit_attempt");
+    });
+
     formulario.addEventListener(
       "submit",
       async function(event) {
@@ -777,6 +841,7 @@
           if (confirmado) {
             window.DTVDiagnostico.sheetsConfirmado = true;
             diagnosticoDTV("Google Sheets confirmó la solicitud");
+            eventoGA4("dtv_form_success");
 
             // Conversión Meta solo con consentimiento
 
@@ -890,6 +955,9 @@
 
         diagnosticoDTV("Cookies aceptadas");
         iniciarMetaPixel();
+        iniciarGA4();
+        // Si el formulario ya está visible, registrar su visualización tras aceptar.
+        eventoGA4("dtv_form_view");
         ocultarPreferencias();
       }
     );
@@ -919,7 +987,7 @@
         // Si el pixel estaba activo, recargar
         // para evitar nuevos eventos en la página.
 
-        if (pixelIniciado) {
+        if (pixelIniciado || ga4Iniciado) {
           window.location.reload();
         }
       }
